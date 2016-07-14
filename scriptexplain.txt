@@ -1,0 +1,25 @@
+DevOps Challenge
+
+Author: Kenneth Lynch
+Date: 7-13-16
+
+Included files: Vagrantfile, checkip.sh, bootstrap.sh
+
+Vagrantfile is configured to create "ubuntu14-cloudimage" vm machine. After which it calls bootstrap.sh to install and configure Apache server. Finally it calls checkip.sh to check current IP against checkip.dyndns.org website and outputs results to file called ipcheck.txt. 
+
+Vagrantfile configurations:
+config.vm.box = "ubuntu14-cloudimage"
+  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.hostname = "dev-test.localhost"
+  config.vm.provision :shell, path: "checkip.sh"
+
+boostrap.sh
+Set DEBIAN_FRONTEND to noninteractive to prevent unnecessary errors. 
+Use apt-get to update server.
+Use apt-get to install Apache Server. 
+
+checkip.sh
+Get current datetime.
+Execute wget command to get ip address. Results are formatted using sed. 
+Use echo to output datetime and IP to file called ipcheck.txt formatted as <datetimestamp> | <ip addres>
