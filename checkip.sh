@@ -4,6 +4,7 @@
 #Auther: Kenneth Lynch
 #Date: 7-13-16
 ##############################################################################
+export DEBIAN_FRONTEND=noninteractive
 #place date into variable
 d=$(date +%F_%T) 
 
