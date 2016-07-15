@@ -17,7 +17,7 @@ config.vm.box = "ubuntu14-cloudimage"
   config.vm.provision :shell, path: "checkip.sh"
 
 boostrap.sh -p <password>
-Accepts one argument for password.
+Accepts one argument for MySql root password.
 Set DEBIAN_FRONTEND to noninteractive to prevent unnecessary errors. 
 Use apt-get to update server.
 Use apt-get to install Apache Server. 
