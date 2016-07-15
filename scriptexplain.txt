@@ -7,6 +7,8 @@ Included files: Vagrantfile, checkip.sh, bootstrap.sh
 
 Vagrantfile is configured to create "ubuntu14-cloudimage" vm machine. After which it calls bootstrap.sh to install and configure Apache server. Finally it calls checkip.sh to check current IP against checkip.dyndns.org website and outputs results to file called ipcheck.txt. 
 
+Warning during install of MySql can be ignored as the file is modified after install in bootstrap.sh
+
 Vagrantfile configurations:
 config.vm.box = "ubuntu14-cloudimage"
   config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
@@ -14,10 +16,13 @@ config.vm.box = "ubuntu14-cloudimage"
   config.vm.hostname = "dev-test.localhost"
   config.vm.provision :shell, path: "checkip.sh"
 
-boostrap.sh
+boostrap.sh -p <password>
+Accepts one argument for password.
 Set DEBIAN_FRONTEND to noninteractive to prevent unnecessary errors. 
 Use apt-get to update server.
 Use apt-get to install Apache Server. 
+Use apt-get to install MySql Server.
+Use sed to modify /etc/mysql/my.cnf file to reflect required change in the warning during MySql install. 
 
 checkip.sh
 Get current datetime.

@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu14-cloudimage"
   config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-  config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.provision :shell, path: "bootstrap.sh", :args => ["-p 'testpassword'"]
   config.vm.hostname = "dev-test.localhost"
   config.vm.provision :shell, path: "checkip.sh"
 
