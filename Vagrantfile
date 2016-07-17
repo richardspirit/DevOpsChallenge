@@ -1,16 +1,14 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# All Vagrant configuration is done below. The "2" in Vagrant.configure
-# configures the configuration version (we support older styles for
-# backwards compatibility). Please don't change it unless you know what
-# you're doing.
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu14-cloudimage"
-  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
-  config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-  config.vm.provision :shell, path: "bootstrap.sh", :args => ["-p 'testpassword'"]
-  config.vm.hostname = "dev-test.localhost"
-  config.vm.provision :shell, path: "checkip.sh"
 
+  config.vm.box = "mwrock/Windows2012R2"
+  config.vm.box_url = "https://atlas.hashicorp.com/mwrock/boxes/Windows2012R2/versions/0.5.3/providers/virtualbox.box"
+  config.vm.network :forwarded_port, guest: 3389, host: 3389, id: "rdp", auto_correct: true
+  config.vm.communicator = "winrm"
+  # Your implementation goes here
+  config.vm.provision "shell", inline: "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))"
+  config.vm.provision "shell", path: "bootstrap.ps1"
+  config.vm.provision "shell", path: "checkip.ps1"
 end
