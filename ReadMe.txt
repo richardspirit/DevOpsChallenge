@@ -6,7 +6,7 @@ Date: 7-13-16
 Included files: VagrantfileLinux,VagrantfileWin,checkip.ps1,bootstrap.ps1,checkip.sh, bootstrap.sh,setup.pl
 Requirements: Perl 5
 
-Setup file is called with arguments for either Linux or Windows machine. If Linux is chosen then a mysql password is also required. 
+Setup file is called with arguments for either "Linux" or "Windows" machine case sensitive. If Linux is chosen then a mysql password is also required. 
 
 Setup file will make a copy of either VagrantfileLinux or VagrantfileWin and create Vagrantfile. If file exists, it will be overwritten. 
 
