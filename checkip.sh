@@ -11,6 +11,7 @@ d=$(date +%F_%T)
 #get results of querying checkip.dyndns.org
 ipstuff=`wget -q -O - checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//'` 
 
+#Ensure that a result is returned 
 if [ $? -ne 0 ]
   then echo "No data returned" > ipcheck.txt
 fi
